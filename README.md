@@ -21,3 +21,19 @@ PHP 7.4–8.1 haben kein offizielles Patch-Release → isolieren oder migrieren.
 > Hinweis: Das Skript prüft CLI-Binaries. Maßgeblich für die Lücke ist die
 > Version, die der Webserver ausführt (meist PHP-FPM) – diese ggf. separat
 > mit `php-fpm -v` bzw. `systemctl status 'php*-fpm'` bestätigen.
+
+## server-hardening-check.sh
+
+Lesendes Audit gängiger Härtungs-Einstellungen eines Linux-Servers (SSH,
+Firewall, Updates, Benutzerkonten, Kernel-/Netzwerk-`sysctl`, Zeitsync,
+Brute-Force-Schutz). **Verändert nichts am System** – gibt nur Befunde und
+Empfehlungen als `PASS` / `WARN` / `FAIL` aus.
+
+```bash
+sudo bash server-hardening-check.sh   # sudo für vollständige Prüfungen
+```
+
+**Exit-Codes:** `0` = keine FAILs · `1` = mindestens ein FAIL.
+
+Ersetzt keine vollständige Härtung (z. B. nach CIS-Benchmark), dient aber als
+schneller Überblick.
