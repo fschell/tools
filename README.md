@@ -1,5 +1,7 @@
 # tools
 
+[![CI](https://github.com/fschell/tools/actions/workflows/ci.yml/badge.svg)](https://github.com/fschell/tools/actions/workflows/ci.yml)
+
 Kleine Sammlung von Admin- und Security-Hilfsskripten.
 
 ## php-patch-check.sh

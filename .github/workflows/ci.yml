@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  shell-lint:
+    name: Shell lint & syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bash syntax check (bash -n)
+        run: |
+          set -e
+          for f in $(find . -type f -name '*.sh'); do
+            echo "==> bash -n $f"
+            bash -n "$f"
+          done
+
+      - name: ShellCheck
+        run: |
+          set -e
+          shellcheck --version
+          # severity=warning: echte Fehler schlagen fehl, reine Style/Info-Hinweise nicht
+          shellcheck --severity=warning $(find . -type f -name '*.sh')
